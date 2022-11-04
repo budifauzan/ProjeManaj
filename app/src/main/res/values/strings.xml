@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ProjeManaj</string>
+    <string name="tv_activity_intro_get_started">Let\'s Get Started</string>
+    <string name="tv_activity_intro_description">Collaborate and Plan Together Across Multiple Devices on ProjeManaj\'s Minimalist Interface</string>
+    <string name="btn_activity_intro_sign_in">Sign In</string>
+    <string name="btn_activity_intro_sign_up">Sign Up</string>
+    <string name="iv_activity_intro_image_content_description">A person arranging task</string>
 </resources>
