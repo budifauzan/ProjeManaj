@@ -1,5 +1,6 @@
 package com.example.projemanaj
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.os.Handler
 import android.view.WindowManager
 import com.example.projemanaj.databinding.ActivitySplashBinding
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
     private var binding: ActivitySplashBinding? = null
 
