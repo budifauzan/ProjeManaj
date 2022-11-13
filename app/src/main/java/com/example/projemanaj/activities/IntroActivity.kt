@@ -1,14 +1,12 @@
-package com.example.projemanaj
+package com.example.projemanaj.activities
 
 import android.content.Intent
 import android.graphics.Typeface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import android.widget.Toast
 import com.example.projemanaj.databinding.ActivityIntroBinding
 
-class IntroActivity : AppCompatActivity() {
+class IntroActivity : BaseActivity() {
     private var binding: ActivityIntroBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +22,7 @@ class IntroActivity : AppCompatActivity() {
         binding!!.tvAppName.typeface = typeface
 
         binding!!.btnSignIn.setOnClickListener {
-            Toast.makeText(this, "Sign In", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, SignInActivity::class.java))
         }
         binding!!.btnSignUp.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
@@ -34,5 +32,9 @@ class IntroActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         binding = null
+    }
+
+    override fun onBackPressed() {
+        doubleBackToExit()
     }
 }

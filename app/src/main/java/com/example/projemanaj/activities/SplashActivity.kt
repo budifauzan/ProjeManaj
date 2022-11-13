@@ -1,4 +1,4 @@
-package com.example.projemanaj
+package com.example.projemanaj.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent

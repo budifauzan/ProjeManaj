@@ -1,7 +1,8 @@
-package com.example.projemanaj
+package com.example.projemanaj.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.projemanaj.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
