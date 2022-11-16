@@ -6,6 +6,8 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.example.projemanaj.R
 import com.example.projemanaj.databinding.ActivitySignUpBinding
+import com.example.projemanaj.firebase.Firestore
+import com.example.projemanaj.models.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -68,16 +70,24 @@ class SignUpActivity : BaseActivity() {
             showProgressDialog(resources.getString(R.string.tv_dialog_progress_text))
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
-                    hideProgressDialog()
                     if (task.isSuccessful) {
                         val firebaseUser: FirebaseUser = task.result!!.user!!
-                        val registeredEmail = firebaseUser.email
-                        auth.signOut()
-                        finish()
+                        val user = UserModel(firebaseUser.uid, name, email, "", 0, "")
+                        Firestore().registerUser(this, user)
                     } else {
+                        hideProgressDialog()
                         Toast.makeText(this, task.exception!!.message, Toast.LENGTH_SHORT).show()
                     }
                 }
         }
     }
+
+    fun userRegisterSuccess() {
+        hideProgressDialog()
+        Toast.makeText(this, "You have successfully registered your account", Toast.LENGTH_SHORT)
+            .show()
+        auth.signOut()
+        finish()
+    }
+
 }

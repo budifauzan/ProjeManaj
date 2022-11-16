@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
 import com.example.projemanaj.databinding.ActivitySplashBinding
+import com.example.projemanaj.firebase.Firestore
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -19,16 +20,21 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding!!.root)
 
         window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
+            WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
         val typeface: Typeface = Typeface.createFromAsset(assets, "carbon bl.ttf")
         binding!!.tvAppName.typeface = typeface
 
         Handler().postDelayed({
-            startActivity(Intent(this, IntroActivity::class.java))
-            finish()
+
+            val currentUserID = Firestore().getCurrentUserID()
+            if (currentUserID.isNotEmpty()) {
+                startActivity(Intent(this, MainActivity::class.java))
+            } else {
+                startActivity(Intent(this, IntroActivity::class.java))
+                finish()
+            }
         }, 2500)
     }
 
